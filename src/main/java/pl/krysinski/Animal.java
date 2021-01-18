@@ -5,6 +5,8 @@ public class Animal {
     private Double weight;
     private Boolean isAlive = true;
 
+    private static final Double MIN_WEIGHT = 5.0;
+
     public Animal(String species, Double weight) {
         this.species = species;
         this.weight = weight;
@@ -22,11 +24,11 @@ public class Animal {
     public void takeForAWalk(){
         if (isAlive){
             this.weight--;
-            if(this.weight <= 0)
+            if(this.weight <= MIN_WEIGHT)
             {
                 isAlive = false;
                 System.out.println("Waga zwierzaka osiągneła " + this.weight + ". Zwierzak zdechł...");
-            }else if (this.weight >= 0 && this.weight <= 1){
+            }else if (this.weight >= MIN_WEIGHT && this.weight <= MIN_WEIGHT + 1){
                 System.out.println("Wyprowadziłeś zwierzaka na spacer. Waga zwierzaka jest bliska 0!!! Nakarm go szybko!!");
             }else{
                 System.out.println("Wyprowadziłeś zwierzaka na spacer. Jego waga zmalała i wynosi teraz: " + this.weight);
