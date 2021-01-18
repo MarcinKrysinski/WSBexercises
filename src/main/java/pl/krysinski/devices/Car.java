@@ -22,7 +22,19 @@ public class Car extends Device implements Sellable {
 
     @Override
     public void sell(Human seller, Human buyer, Double price) {
-
+        if(seller.getCar() != null){
+            if (buyer.getCash() >= price){
+                buyer.setCash(buyer.getCash() - price);
+                seller.setCash(seller.getCash() + price);
+                buyer.setCarWhenBuySecondHandCar(seller.getCar());
+                seller.setCarWhenBuySecondHandCar(null);
+                System.out.println("Transakcja sfinalizowana!");
+            }else {
+                System.out.println("Nie stać Cie!");
+            }
+        }else{
+            System.out.println("Sprzedający nie ma auta na sprzedaz!");
+        }
     }
 
     @Override

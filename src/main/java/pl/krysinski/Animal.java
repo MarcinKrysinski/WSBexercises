@@ -49,7 +49,7 @@ public class Animal implements Sellable{
                 System.out.println("Nie stać Cie!");
             }
         }else{
-            System.out.println("Sprzedjący nie ma zwierzaka na sprzedaz!");
+            System.out.println("Sprzedający nie ma zwierzaka na sprzedaz!");
         }
 
     }

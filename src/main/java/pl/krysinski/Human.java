@@ -54,8 +54,9 @@ public class Human {
         }
     }
 
-    public void setCar(Car car) {
-        if(this.salary > car.getValue()){
+    public void setCarWhenBuyInCarShop(Car car) {
+
+        if(this.cash > car.getValue()){
             System.out.println("Kupiłeś auto za gotówke!");
             this.car = car;
         }else if (this.salary > car.getValue()/12){
@@ -64,6 +65,10 @@ public class Human {
         }else{
             System.out.println("Nie stać Cię lamusie, skończ studia albo jedź na truskawki czy coś!");
         }
+    }
+
+    public void setCarWhenBuySecondHandCar(Car car){
+        this.car = car;
     }
 
     public void setCash(Double cash) {
@@ -77,6 +82,7 @@ public class Human {
     public void setPet(Animal pet) {
         this.pet = pet;
     }
+
 
     @Override
     public String toString() {
