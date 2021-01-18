@@ -1,13 +1,10 @@
 package pl.krysinski.devices;
 
-public class Car {
-    private final String producer;
-    private final String model;
-    private Double value;
+public class Car extends Device{
+    private final Double value;
 
-    public Car(String producer, String model, Double value) {
-        this.producer = producer;
-        this.model = model;
+    public Car(String producer, String model,Integer yearOfProduction, Double value) {
+        super(producer, model, yearOfProduction);
         this.value = value;
     }
 
@@ -15,12 +12,19 @@ public class Car {
         return value;
     }
 
+
+    @Override
+    public void turnOn() {
+        System.out.println("Engine start!");
+    }
+
     @Override
     public String toString() {
         return "Car{" +
-                "producer='" + producer + '\'' +
+                "value=" + value +
+                ", producer='" + producer + '\'' +
                 ", model='" + model + '\'' +
-                ", value=" + value +
+                ", yearOfProduction=" + yearOfProduction +
                 '}';
     }
 }
