@@ -1,4 +1,4 @@
-package pl.krysinski;
+package pl.krysinski.devices;
 
 public class Car {
     private final String producer;
@@ -13,5 +13,14 @@ public class Car {
 
     public Double getValue() {
         return value;
+    }
+
+    @Override
+    public String toString() {
+        return "Car{" +
+                "producer='" + producer + '\'' +
+                ", model='" + model + '\'' +
+                ", value=" + value +
+                '}';
     }
 }

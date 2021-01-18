@@ -35,4 +35,13 @@ public class Animal {
             }
         }
     }
+
+    @Override
+    public String toString() {
+        return "Animal{" +
+                "species='" + species + '\'' +
+                ", weight=" + weight +
+                ", isAlive=" + isAlive +
+                '}';
+    }
 }
