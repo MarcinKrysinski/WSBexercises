@@ -1,6 +1,7 @@
 package pl.krysinski;
 
 import pl.krysinski.devices.Car;
+import pl.krysinski.devices.Phone;
 
 import java.time.LocalDateTime;
 
@@ -8,8 +9,10 @@ public class Human {
     private final String name;
     private final String lastName;
     private Double salary;
+    private Double cash;
     private Animal pet;
     private Car car;
+    private Phone phone;
 
 
     public Human(String name, String lastName, Double salary, Animal pet, Car car) {
@@ -18,6 +21,7 @@ public class Human {
         this.salary = salary;
         this.pet = pet;
         this.car = car;
+        this.cash = 0.0;
     }
 
     public Double getSalary() {
@@ -25,8 +29,20 @@ public class Human {
         return salary;
     }
 
+    public Animal getPet() {
+        return pet;
+    }
+
     public Car getCar() {
         return car;
+    }
+
+    public Phone getPhone() {
+        return phone;
+    }
+
+    public Double getCash() {
+        return cash;
     }
 
     public void setSalary(Double salary) {
@@ -50,14 +66,29 @@ public class Human {
         }
     }
 
+    public void setCash(Double cash) {
+        this.cash = cash;
+    }
+
+    public void setPhone(Phone phone) {
+        this.phone = phone;
+    }
+
+    public void setPet(Animal pet) {
+        this.pet = pet;
+    }
+
     @Override
     public String toString() {
         return "Human{" +
                 "name='" + name + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", salary=" + salary +
+                ", cash=" + cash +
                 ", pet=" + pet +
                 ", car=" + car +
+                ", phone=" + phone +
                 '}';
     }
+
 }

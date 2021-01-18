@@ -1,6 +1,9 @@
 package pl.krysinski.devices;
 
-public class Car extends Device{
+import pl.krysinski.Human;
+import pl.krysinski.Sellable;
+
+public class Car extends Device implements Sellable {
     private final Double value;
 
     public Car(String producer, String model,Integer yearOfProduction, Double value) {
@@ -12,10 +15,14 @@ public class Car extends Device{
         return value;
     }
 
-
     @Override
     public void turnOn() {
         System.out.println("Engine start!");
+    }
+
+    @Override
+    public void sell(Human seller, Human buyer, Double price) {
+
     }
 
     @Override
@@ -27,4 +34,5 @@ public class Car extends Device{
                 ", yearOfProduction=" + yearOfProduction +
                 '}';
     }
+
 }

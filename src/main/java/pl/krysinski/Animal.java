@@ -1,6 +1,6 @@
 package pl.krysinski;
 
-public class Animal {
+public class Animal implements Sellable{
     private final String species;
     private Double weight;
     private Boolean isAlive = true;
@@ -37,6 +37,24 @@ public class Animal {
     }
 
     @Override
+    public void sell(Human seller, Human buyer, Double price) {
+        if(seller.getPet() != null){
+            if (buyer.getCash() >= price){
+                buyer.setCash(buyer.getCash() - price);
+                seller.setCash(seller.getCash() + price);
+                buyer.setPet(seller.getPet());
+                seller.setPet(null);
+                System.out.println("Transakcja sfinalizowana!");
+            }else {
+                System.out.println("Nie stać Cie!");
+            }
+        }else{
+            System.out.println("Sprzedjący nie ma zwierzaka na sprzedaz!");
+        }
+
+    }
+
+    @Override
     public String toString() {
         return "Animal{" +
                 "species='" + species + '\'' +
@@ -44,4 +62,6 @@ public class Animal {
                 ", isAlive=" + isAlive +
                 '}';
     }
+
+
 }
