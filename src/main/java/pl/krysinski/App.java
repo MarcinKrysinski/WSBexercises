@@ -11,20 +11,8 @@ public class App
 
         Animal petTest = new Animal("Unknown", 10.0);
         petTest.feed(3);
-        petTest.takeForAWalk();
-        petTest.takeForAWalk();
-        petTest.takeForAWalk();
-        petTest.takeForAWalk();
-        petTest.takeForAWalk();
-        petTest.takeForAWalk();
-        petTest.takeForAWalk();
-        petTest.takeForAWalk();
-        petTest.takeForAWalk();
-        petTest.takeForAWalk();
-        petTest.takeForAWalk();
-        petTest.takeForAWalk();
-        petTest.takeForAWalk();
-        petTest.takeForAWalk();
-        petTest.takeForAWalk();
+        Human me = new Human("Marcin", "Krysiński", petTest,new Car("pr", "ss"));
+
+        System.out.println(me);
     }
 }
