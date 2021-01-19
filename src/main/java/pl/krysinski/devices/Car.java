@@ -2,8 +2,11 @@ package pl.krysinski.devices;
 
 import pl.krysinski.creatures.Human;
 import pl.krysinski.Sellable;
+import java.util.LinkedList;
+import java.util.List;
 
 public abstract class Car extends Device implements Sellable {
+    public List<Human> owners = new LinkedList<>();
 
     public Car(String producer, String model,Integer yearOfProduction, Double value) {
         super(producer, model, yearOfProduction, value);
@@ -26,12 +29,15 @@ public abstract class Car extends Device implements Sellable {
             throw new Exception("Kupujący nie ma miejsca w Garazu!");
         }else if (buyer.getCash() < price){
             throw new Exception("Kupujący nie ma wystarczającej ilości hajsu!");
+        }else if (seller.hasCar(this) && seller.ifSellerWasLastOwner(this.owners)){
+            seller.removeCar(this);
+            buyer.addCar(this);
+            buyer.setCash(buyer.getCash() - price);
+            seller.setCash(seller.getCash() + price);
+            owners.add(buyer);
+            System.out.println("Transakcja zakonczona sukcesem!");
         }
-        seller.removeCar(this);
-        buyer.addCar(this);
-        buyer.setCash(buyer.getCash() - price);
-        seller.setCash(seller.getCash() + price);
-        System.out.println("Transakcja zakonczona sukcesem!");
+
     }
 
 

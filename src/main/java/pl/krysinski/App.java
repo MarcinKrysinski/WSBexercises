@@ -11,8 +11,7 @@ import pl.krysinski.devices.Diesel;
  */
 public class App 
 {
-    public static void main( String[] args )
-    {
+    public static void main( String[] args ) throws Exception {
 
 //        Animal petTest = new Animal("Unknown", 10.0);
 //        petTest.feed(3);
@@ -24,21 +23,30 @@ public class App
 //        car.turnOn();
 
         Human buyer = new Human("Homo sapiens", 80.0, "Marcin", "Krysinski", 3000.0, null, 4);
-        buyer.setCar(car, 0);
-        buyer.setCar(car2, 1);
-        buyer.setCar(car3, 2);
-        buyer.setCar(car4, 3);
+        Human seller = new Human("Homo sapiens", 80.0, "Marcin", "Krysinski", 3000.0, null, 4);
 
+
+        seller.setCar(car, 0);
+        buyer.setCash(500.0);
         System.out.println(buyer);
-        Car[] cars = buyer.getGarage();
-        for (Car value : cars) {
-            System.out.println(value);
-        }
-        Car[] carsSorted = buyer.sortedCarsInGarageByValue();
-        System.out.println("Po sortowaniu:");
-        for (Car value : carsSorted) {
-            System.out.println(value);
-        }
+        System.out.println(seller);
+        car.sell(seller, buyer, 100.0);
+        System.out.println(buyer);
+        System.out.println(seller);
+//        buyer.setCar(car2, 1);
+//        buyer.setCar(car3, 2);
+//        buyer.setCar(car4, 3);
+
+//        System.out.println(buyer);
+//        Car[] cars = buyer.getGarage();
+//        for (Car value : cars) {
+//            System.out.println(value);
+//        }
+//        Car[] carsSorted = buyer.sortedCarsInGarageByValue();
+//        System.out.println("Po sortowaniu:");
+//        for (Car value : carsSorted) {
+//            System.out.println(value);
+//        }
 //        Human seller = new Human("aaaaa", "aaaaaa", 0.0, null, null);
 //
 //        buyer.setCash(500.0);

@@ -86,6 +86,7 @@ public class Human extends Animal {
 
     public void setCar(Car car, Integer parkNumber) {
         this.garage[parkNumber] = car;
+        car.owners.add(this);
     }
 
 
@@ -136,6 +137,11 @@ public class Human extends Animal {
             }
         }
         return hasSpace;
+    }
+
+    public boolean ifSellerWasLastOwner(List<Human> owners){
+        int lastOwner = owners.size()-1;
+        return owners.get(lastOwner).equals(this);
     }
 
     public void removeCar(Car car) {
