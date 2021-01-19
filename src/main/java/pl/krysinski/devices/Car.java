@@ -3,7 +3,7 @@ package pl.krysinski.devices;
 import pl.krysinski.creatures.Human;
 import pl.krysinski.Sellable;
 
-public class Car extends Device implements Sellable {
+public abstract class Car extends Device implements Sellable {
     private final Double value;
 
     public Car(String producer, String model,Integer yearOfProduction, Double value) {
@@ -36,6 +36,8 @@ public class Car extends Device implements Sellable {
             System.out.println("Sprzedający nie ma auta na sprzedaz!");
         }
     }
+
+    public abstract void refuel();
 
     @Override
     public String toString() {

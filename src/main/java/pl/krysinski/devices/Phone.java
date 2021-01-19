@@ -36,7 +36,7 @@ public class Phone extends Device implements Sellable, Installer {
             System.out.println("Sprzedający nie ma telefonu na sprzedaz!");
         }
     }
-    
+
     @Override
     public boolean installAnnApp(String appName) {
         return  installAnnApp(appName, DEFAULT_APP_VERSION);
