@@ -3,8 +3,12 @@ package pl.krysinski.devices;
 import pl.krysinski.creatures.Human;
 import pl.krysinski.Sellable;
 
-public class Phone extends Device implements Sellable {
+import java.util.List;
+
+public class Phone extends Device implements Sellable, Installer {
     private final Double screenSize;
+    public static final String DEFAULT_APP_VERSION = "LATEST";
+    public static final String DEFAULT_SERVER_ADDRESS = "appserver.me.com";
 
     public Phone(String producer, String model, Integer yearOfProduction, Double screenSize) {
         super(producer, model, yearOfProduction);
@@ -33,6 +37,34 @@ public class Phone extends Device implements Sellable {
         }
     }
 
+
+    @Override
+    public boolean installAnnApp(String appName) {
+        System.out.println("Zainstalowano aplkacje " + appName + " v. " + DEFAULT_APP_VERSION);
+        return true;
+    }
+
+    @Override
+    public boolean installAnnApp(String appName, String version) {
+        System.out.println("Zainstalowano aplkacje " + appName +" w wersji " + version + " server: " + DEFAULT_SERVER_ADDRESS);
+        return true;
+    }
+
+    @Override
+    public boolean installAnnApp(String appName, String version, String serverUrl) {
+        System.out.println("Zainstalowano aplkacje " + appName +" w wersji " + version + " z serwera " + serverUrl );
+        return true;
+    }
+
+    @Override
+    public boolean installAnnApp(List<String> appNames) {
+        System.out.println("Zainstalowano aplkacje nastepujące aplikacje: ");
+        for (String appName: appNames) {
+            System.out.println(appName);
+        }
+        return true;
+    }
+
     @Override
     public String toString() {
         return "Phone{" +
@@ -42,4 +74,5 @@ public class Phone extends Device implements Sellable {
                 ", screenSize=" + screenSize +
                 '}';
     }
+
 }
