@@ -1,9 +1,11 @@
-package pl.krysinski;
+package pl.krysinski.creatures;
 
-public class Animal implements Sellable{
+import pl.krysinski.Sellable;
+
+public abstract class Animal implements Sellable, Feedable {
     private final String species;
     private Double weight;
-    private Boolean isAlive = true;
+    public Boolean isAlive = true;
 
     private static final Double MIN_WEIGHT = 5.0;
 
@@ -12,7 +14,18 @@ public class Animal implements Sellable{
         this.weight = weight;
     }
 
-    public void feed(double foodWeight){
+    public void feed(){
+        if (this.species.equals("dog")){
+            feed(1.5);
+        }else if (this.species.equals("cat")){
+            feed(1.0);
+        }else if (this instanceof FarmAnimal){
+            feed(5.0);
+        }
+
+    }
+
+    public void feed(Double foodWeight){
         if(isAlive){
             this.weight += foodWeight/2;
             System.out.println("Nakrmiłeś zwierzaka. Jego waga wynosi wzrosła teraz o : " + foodWeight/2 + " i wynosi: "+ this.weight);
@@ -38,7 +51,7 @@ public class Animal implements Sellable{
 
     @Override
     public void sell(Human seller, Human buyer, Double price) {
-        if(seller.getPet() != null){
+        if(seller.getPet() != null && !seller.getPet().species.equals("human")){
             if (buyer.getCash() >= price){
                 buyer.setCash(buyer.getCash() - price);
                 seller.setCash(seller.getCash() + price);
@@ -48,10 +61,15 @@ public class Animal implements Sellable{
             }else {
                 System.out.println("Nie stać Cie!");
             }
-        }else{
+        }else if (seller.getPet() != null && seller.getPet().species.equals("human")){
+            System.out.println("Handel ludzmi jest zakazany!!");
+        }else if (seller.getPet() != null){
             System.out.println("Sprzedający nie ma zwierzaka na sprzedaz!");
         }
+    }
 
+    public void setWeight(Double weight) {
+        this.weight = weight;
     }
 
     @Override

@@ -1,11 +1,12 @@
-package pl.krysinski;
+package pl.krysinski.creatures;
 
+import pl.krysinski.creatures.Animal;
 import pl.krysinski.devices.Car;
 import pl.krysinski.devices.Phone;
 
 import java.time.LocalDateTime;
 
-public class Human {
+public class Human extends Animal{
     private final String name;
     private final String lastName;
     private Double salary;
@@ -15,13 +16,19 @@ public class Human {
     private Phone phone;
 
 
-    public Human(String name, String lastName, Double salary, Animal pet, Car car) {
+    public Human(String species, Double weight, String name, String lastName, Double salary, Animal pet, Car car) {
+        super(species, weight);
         this.name = name;
         this.lastName = lastName;
         this.salary = salary;
         this.pet = pet;
         this.car = car;
         this.cash = 0.0;
+    }
+
+    @Override
+    public void feed() {
+        System.out.println("Dzięki za zarcie!");
     }
 
     public Double getSalary() {

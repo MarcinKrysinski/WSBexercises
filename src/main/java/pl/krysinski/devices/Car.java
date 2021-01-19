@@ -1,6 +1,6 @@
 package pl.krysinski.devices;
 
-import pl.krysinski.Human;
+import pl.krysinski.creatures.Human;
 import pl.krysinski.Sellable;
 
 public class Car extends Device implements Sellable {
