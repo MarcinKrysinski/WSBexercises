@@ -49,24 +49,24 @@ public abstract class Animal implements Sellable, Feedable {
         }
     }
 
-    @Override
-    public void sell(Human seller, Human buyer, Double price) {
-        if(seller.getPet() != null && !seller.getPet().species.equals("human")){
-            if (buyer.getCash() >= price){
-                buyer.setCash(buyer.getCash() - price);
-                seller.setCash(seller.getCash() + price);
-                buyer.setPet(seller.getPet());
-                seller.setPet(null);
-                System.out.println("Transakcja sfinalizowana!");
-            }else {
-                System.out.println("Nie stać Cie!");
-            }
-        }else if (seller.getPet() != null && seller.getPet().species.equals("human")){
-            System.out.println("Handel ludzmi jest zakazany!!");
-        }else if (seller.getPet() != null){
-            System.out.println("Sprzedający nie ma zwierzaka na sprzedaz!");
-        }
-    }
+//    @Override
+//    public void sell(Human seller, Human buyer, Double price) {
+//        if(seller.getPet() != null && !seller.getPet().species.equals("human")){
+//            if (buyer.getCash() >= price){
+//                buyer.setCash(buyer.getCash() - price);
+//                seller.setCash(seller.getCash() + price);
+//                buyer.setPet(seller.getPet());
+//                seller.setPet(null);
+//                System.out.println("Transakcja sfinalizowana!");
+//            }else {
+//                System.out.println("Nie stać Cie!");
+//            }
+//        }else if (seller.getPet() != null && seller.getPet().species.equals("human")){
+//            System.out.println("Handel ludzmi jest zakazany!!");
+//        }else if (seller.getPet() != null){
+//            System.out.println("Sprzedający nie ma zwierzaka na sprzedaz!");
+//        }
+//    }
 
     public void setWeight(Double weight) {
         this.weight = weight;

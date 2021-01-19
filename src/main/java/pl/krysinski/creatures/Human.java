@@ -2,29 +2,48 @@ package pl.krysinski.creatures;
 
 import pl.krysinski.creatures.Animal;
 import pl.krysinski.devices.Car;
+import pl.krysinski.devices.CarComparator;
 import pl.krysinski.devices.Phone;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
-public class Human extends Animal{
+public class Human extends Animal {
     private final String name;
     private final String lastName;
     private Double salary;
     private Double cash;
     private Animal pet;
-    private Car car;
+    private final Car[] garage;
     private Phone phone;
+    public static final Integer GARAGE_DEFAULT_SIZE = 4;
 
 
-    public Human(String species, Double weight, String name, String lastName, Double salary, Animal pet, Car car) {
+    public Human(String species, Double weight, String name, String lastName, Double salary, Animal pet, Integer sizeGarage) {
         super(species, weight);
         this.name = name;
         this.lastName = lastName;
         this.salary = salary;
         this.pet = pet;
-        this.car = car;
+        this.garage = new Car[sizeGarage];
         this.cash = 0.0;
     }
+
+    public Human(String species, Double weight, String name, String lastName, Double salary, Animal pet) {
+        super(species, weight);
+        this.name = name;
+        this.lastName = lastName;
+        this.salary = salary;
+        this.pet = pet;
+        this.garage = new Car[GARAGE_DEFAULT_SIZE];
+        this.cash = 0.0;
+    }
+
 
     @Override
     public void feed() {
@@ -40,8 +59,8 @@ public class Human extends Animal{
         return pet;
     }
 
-    public Car getCar() {
-        return car;
+    public Car getCar(Integer parkNumber) {
+        return garage[parkNumber];
     }
 
     public Phone getPhone() {
@@ -52,31 +71,23 @@ public class Human extends Animal{
         return cash;
     }
 
+    public Car[] getGarage() {
+        return garage;
+    }
+
     public void setSalary(Double salary) {
-        if(salary < 0){
+        if (salary < 0) {
             System.out.println("Wypłata nie może być ujemna!!!");
-        }else{
+        } else {
             this.salary = salary;
             System.out.println("Zmieniono wysokośc pensji! Aktualana pensja wynosi: " + salary);
         }
     }
 
-    public void setCarWhenBuyInCarShop(Car car) {
-
-        if(this.cash > car.getValue()){
-            System.out.println("Kupiłeś auto za gotówke!");
-            this.car = car;
-        }else if (this.salary > car.getValue()/12){
-            System.out.println("Wziąłeś auto na kredyt!");
-            this.car = car;
-        }else{
-            System.out.println("Nie stać Cię lamusie, skończ studia albo jedź na truskawki czy coś!");
-        }
+    public void setCar(Car car, Integer parkNumber) {
+        this.garage[parkNumber] = car;
     }
 
-    public void setCarWhenBuySecondHandCar(Car car){
-        this.car = car;
-    }
 
     public void setCash(Double cash) {
         this.cash = cash;
@@ -90,6 +101,20 @@ public class Human extends Animal{
         this.pet = pet;
     }
 
+    public Double sumAllCarsValue() {
+        Double sumAllCarsValue = 0.0;
+        for (int i = 0; i < this.garage.length; i++) {
+            if (this.garage[i] != null) {
+                sumAllCarsValue += this.garage[i].getValue();
+            }
+        }
+        return sumAllCarsValue;
+    }
+
+    public Car[] sortedCarsInGarageByValue() {
+        Arrays.sort(this.garage, new CarComparator());
+        return this.garage;
+    }
 
     @Override
     public String toString() {
@@ -99,9 +124,8 @@ public class Human extends Animal{
                 ", salary=" + salary +
                 ", cash=" + cash +
                 ", pet=" + pet +
-                ", car=" + car +
+                ", garage=" + Arrays.toString(garage) +
                 ", phone=" + phone +
                 '}';
     }
-
 }

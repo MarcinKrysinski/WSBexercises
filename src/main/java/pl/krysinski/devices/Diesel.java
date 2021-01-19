@@ -10,4 +10,14 @@ public class Diesel extends Car{
     public void refuel() {
         System.out.println("Zatankowano ON");
     }
+
+    @Override
+    public String toString() {
+        return "Diesel{" +
+                "producer='" + producer + '\'' +
+                ", model='" + model + '\'' +
+                ", yearOfProduction=" + yearOfProduction +
+                ", value=" + value +
+                '}';
+    }
 }

@@ -3,6 +3,7 @@ package pl.krysinski;
 import pl.krysinski.creatures.Animal;
 import pl.krysinski.creatures.Human;
 import pl.krysinski.devices.Car;
+import pl.krysinski.devices.Diesel;
 
 /**
  * Hello world!
@@ -16,10 +17,28 @@ public class App
 //        Animal petTest = new Animal("Unknown", 10.0);
 //        petTest.feed(3);
 
-//        Car car = new Car("Opel", "Vectra", 2008, 15000.0);
+        Car car = new Diesel("Opel", "Vectra", 2008, 15000.0);
+        Car car2 = new Diesel("Opel", "Corsa", 2008, 1000.0);
+        Car car3 = new Diesel("Opel", "Astrra", 2008, 150000.0);
+        Car car4 = new Diesel("Opel", "Vivaro", 2008, 54000.0);
 //        car.turnOn();
 
-//        Human buyer = new Human("mk", "mk", 0.0, null, null);
+        Human buyer = new Human("Homo sapiens", 80.0, "Marcin", "Krysinski", 3000.0, null, 4);
+        buyer.setCar(car, 0);
+        buyer.setCar(car2, 1);
+        buyer.setCar(car3, 2);
+        buyer.setCar(car4, 3);
+
+        System.out.println(buyer);
+        Car[] cars = buyer.getGarage();
+        for (Car value : cars) {
+            System.out.println(value);
+        }
+        Car[] carsSorted = buyer.sortedCarsInGarageByValue();
+        System.out.println("Po sortowaniu:");
+        for (Car value : carsSorted) {
+            System.out.println(value);
+        }
 //        Human seller = new Human("aaaaa", "aaaaaa", 0.0, null, null);
 //
 //        buyer.setCash(500.0);
