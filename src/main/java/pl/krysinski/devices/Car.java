@@ -18,23 +18,23 @@ public abstract class Car extends Device implements Sellable {
         System.out.println("Engine start!");
     }
 
+    @Override
+    public void sell(Human seller, Human buyer, Double price) throws Exception {
+        if (!seller.hasCar(this)){
+            throw new Exception("Sprzedjący nie ma auta!");
+        }else if (!buyer.hasFreeSpaceInGarage()){
+            throw new Exception("Kupujący nie ma miejsca w Garazu!");
+        }else if (buyer.getCash() < price){
+            throw new Exception("Kupujący nie ma wystarczającej ilości hajsu!");
+        }
+        seller.removeCar(this);
+        buyer.addCar(this);
+        buyer.setCash(buyer.getCash() - price);
+        seller.setCash(seller.getCash() + price);
+        System.out.println("Transakcja zakonczona sukcesem!");
+    }
 
-//    @Override
-//    public void sell(Human seller, Human buyer, Double price) {
-//        if(seller.getCar() != null){
-//            if (buyer.getCash() >= price){
-//                buyer.setCash(buyer.getCash() - price);
-//                seller.setCash(seller.getCash() + price);
-//                buyer.setCarWhenBuySecondHandCar(seller.getCar());
-//                seller.setCarWhenBuySecondHandCar(null);
-//                System.out.println("Transakcja sfinalizowana!");
-//            }else {
-//                System.out.println("Nie stać Cie!");
-//            }
-//        }else{
-//            System.out.println("Sprzedający nie ma auta na sprzedaz!");
-//        }
-//    }
+
 
     public abstract void refuel();
 

@@ -116,6 +116,47 @@ public class Human extends Animal {
         return this.garage;
     }
 
+    public boolean hasCar(Car car) {
+        boolean hasCar = false;
+        for (int i = 0; i < this.garage.length; i++) {
+            if (this.garage[i] == car) {
+                hasCar = true;
+                break;
+            }
+        }
+        return hasCar;
+    }
+
+    public boolean hasFreeSpaceInGarage() {
+        boolean hasSpace = false;
+        for (int i = 0; i < this.garage.length; i++) {
+            if (this.garage[i] == null) {
+                hasSpace = true;
+                break;
+            }
+        }
+        return hasSpace;
+    }
+
+    public void removeCar(Car car) {
+        for (int i = 0; i < this.garage.length; i++) {
+            if (this.garage[i] == car) {
+                this.garage[i] = null;
+                break;
+            }
+        }
+    }
+
+
+    public void addCar(Car car) {
+        for (int i = 0; i < this.garage.length; i++) {
+            if (this.garage[i] == null) {
+                this.garage[i] = car;
+                break;
+            }
+        }
+    }
+
     @Override
     public String toString() {
         return "Human{" +
