@@ -6,7 +6,8 @@ import java.util.LinkedList;
 import java.util.List;
 
 public abstract class Car extends Device implements Sellable {
-    public List<Human> owners = new LinkedList<>();
+    public List<CarTransactionInfo> owners = new LinkedList<>();
+    CarTransactionInfo carTransactionInfo = new CarTransactionInfo();
 
     public Car(String producer, String model,Integer yearOfProduction, Double value) {
         super(producer, model, yearOfProduction, value);
@@ -29,42 +30,46 @@ public abstract class Car extends Device implements Sellable {
             throw new Exception("Kupujący nie ma miejsca w Garazu!");
         }else if (buyer.getCash() < price){
             throw new Exception("Kupujący nie ma wystarczającej ilości hajsu!");
-        }else if (seller.hasCar(this) && seller.ifSellerWasLastOwner(this.owners)){
+        }else if (seller.hasCar(this) ){
             seller.removeCar(this);
             buyer.addCar(this);
             buyer.setCash(buyer.getCash() - price);
             seller.setCash(seller.getCash() + price);
-            owners.add(buyer);
+            carTransactionInfo.setSeller(seller);
+            carTransactionInfo.setBuyer(buyer);
+            carTransactionInfo.setPrice(price);
+            carTransactionInfo.setCar(this);
+            owners.add(carTransactionInfo);
             System.out.println("Transakcja zakonczona sukcesem!");
         }
 
     }
 
-    public boolean ifWasAnOwner(Human human){
-        boolean ifWasOwner = false;
-        if (owners.contains(human)){
-            ifWasOwner = true;
-        }
-        return ifWasOwner;
-    }
-
-    public boolean ifASoldB (Human a, Human b){
-        boolean ifASoldB =false;
-        for (int i = 0; i < owners.size() - 1; i++ ){
-            if (owners.get(i).equals(a) && owners.get(i+1).equals(b)){
-                ifASoldB = true;
-                break;
-            }
-        }
-        return ifASoldB;
-    }
-
-    public int howManyTransactions(){
-        if (owners != null){
-            return owners.size() - 1;
-        }
-        return 0;
-    }
+//    public boolean ifWasAnOwner(Human human){
+//        boolean ifWasOwner = false;
+//        if (owners.contains(human)){
+//            ifWasOwner = true;
+//        }
+//        return ifWasOwner;
+//    }
+//
+//    public boolean ifASoldB (Human a, Human b){
+//        boolean ifASoldB =false;
+//        for (int i = 0; i < owners.size() - 1; i++ ){
+//            if (owners.get(i).equals(a) && owners.get(i+1).equals(b)){
+//                ifASoldB = true;
+//                break;
+//            }
+//        }
+//        return ifASoldB;
+//    }
+//
+//    public int howManyTransactions(){
+//        if (owners != null){
+//            return owners.size() - 1;
+//        }
+//        return 0;
+//    }
 
 
     public abstract void refuel();

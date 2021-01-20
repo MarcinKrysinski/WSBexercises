@@ -30,9 +30,11 @@ public class App
         buyer.setCash(500.0);
         System.out.println(buyer);
         System.out.println(seller);
+        System.out.println(car.owners);
         car.sell(seller, buyer, 100.0);
         System.out.println(buyer);
         System.out.println(seller);
+        System.out.println(car.owners);
 //        buyer.setCar(car2, 1);
 //        buyer.setCar(car3, 2);
 //        buyer.setCar(car4, 3);

@@ -1,17 +1,13 @@
 package pl.krysinski.creatures;
 
-import pl.krysinski.creatures.Animal;
 import pl.krysinski.devices.Car;
 import pl.krysinski.devices.CarComparator;
+import pl.krysinski.devices.CarTransactionInfo;
 import pl.krysinski.devices.Phone;
-
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
+
 
 public class Human extends Animal {
     private final String name;
@@ -86,7 +82,7 @@ public class Human extends Animal {
 
     public void setCar(Car car, Integer parkNumber) {
         this.garage[parkNumber] = car;
-        car.owners.add(this);
+//        car.owners.add(this);
     }
 
 
@@ -139,9 +135,9 @@ public class Human extends Animal {
         return hasSpace;
     }
 
-    public boolean ifSellerWasLastOwner(List<Human> owners){
+    public boolean ifSellerWasLastOwner(List<CarTransactionInfo> owners){
         int lastOwner = owners.size()-1;
-        return owners.get(lastOwner).equals(this);
+        return owners.get(lastOwner).getSeller().equals(this);
     }
 
     public void removeCar(Car car) {
