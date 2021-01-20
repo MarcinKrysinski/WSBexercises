@@ -40,6 +40,31 @@ public abstract class Car extends Device implements Sellable {
 
     }
 
+    public boolean ifWasAnOwner(Human human){
+        boolean ifWasOwner = false;
+        if (owners.contains(human)){
+            ifWasOwner = true;
+        }
+        return ifWasOwner;
+    }
+
+    public boolean ifASoldB (Human a, Human b){
+        boolean ifASoldB =false;
+        for (int i = 0; i < owners.size() - 1; i++ ){
+            if (owners.get(i).equals(a) && owners.get(i+1).equals(b)){
+                ifASoldB = true;
+                break;
+            }
+        }
+        return ifASoldB;
+    }
+
+    public int howManyTransactions(){
+        if (owners != null){
+            return owners.size() - 1;
+        }
+        return 0;
+    }
 
 
     public abstract void refuel();
