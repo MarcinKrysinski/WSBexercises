@@ -1,8 +1,10 @@
 package pl.krysinski.creatures;
 
 import pl.krysinski.Sellable;
+import pl.krysinski.repo.Connector;
+import pl.krysinski.repo.Repository;
 
-public abstract class Animal implements Sellable, Feedable {
+public class Animal implements Sellable, Feedable {
     private final String species;
     private Double weight;
     public Boolean isAlive = true;
@@ -10,8 +12,14 @@ public abstract class Animal implements Sellable, Feedable {
     private static final Double MIN_WEIGHT = 5.0;
 
     public Animal(String species, Double weight) {
-        this.species = species;
-        this.weight = weight;
+        if (species.equals("Homo sapiens")){
+            this.species = species;
+            this.weight = weight;
+            saveA();
+        }else {
+            this.species = species;
+            this.weight = weight;
+        }
     }
 
     public void feed(){
@@ -70,6 +78,12 @@ public abstract class Animal implements Sellable, Feedable {
 
     public void setWeight(Double weight) {
         this.weight = weight;
+    }
+
+    public void saveA(){
+        String sql = "INSERT INTO ANIMAL (SPECIES, WEIGHT) VALUES (" + "'"+this.species + "'" + ", " + this.weight + ");";
+//        String sql = "INSERT INTO PET (SPECIES, WEIGHT) VALUES ('doggy', 8.0);";
+        Repository.executiveSQL(sql);
     }
 
     @Override

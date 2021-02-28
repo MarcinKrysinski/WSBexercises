@@ -4,6 +4,8 @@ import pl.krysinski.devices.Car;
 import pl.krysinski.devices.CarComparator;
 import pl.krysinski.devices.CarTransactionInfo;
 import pl.krysinski.devices.Phone;
+import pl.krysinski.repo.Repository;
+
 import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.List;
@@ -15,7 +17,7 @@ public class Human extends Animal {
     private Double salary;
     private Double cash;
     private Animal pet;
-    private final Car[] garage;
+    private Car[] garage;
     private Phone phone;
     public static final Integer GARAGE_DEFAULT_SIZE = 4;
 
@@ -38,6 +40,13 @@ public class Human extends Animal {
         this.pet = pet;
         this.garage = new Car[GARAGE_DEFAULT_SIZE];
         this.cash = 0.0;
+    }
+
+    public Human(String species, Double weight, String name, String lastName, Double salary){
+        super(species, weight);
+        this.name = name;
+        this.lastName = lastName;
+        this.salary = salary;
     }
 
 
@@ -157,6 +166,14 @@ public class Human extends Animal {
                 break;
             }
         }
+    }
+
+    public void save(){
+        String sqlRead = "SELECT MAX(id) FROM ANIMAL;";
+        Integer id = Repository.executiveSQLRead(sqlRead);
+        String sql = "INSERT INTO HUMAN (NAME, LAST_NAME, SALARY, SPECIES_ID) VALUES (" + "'"+this.name+ "'" + ", " + "'"+this.lastName + "'" + ", " + this.salary + ", " + id + ");";
+//        String sql = "INSERT INTO PET (SPECIES, WEIGHT) VALUES ('doggy', 8.0);";
+        Repository.executiveSQL(sql);
     }
 
     @Override
