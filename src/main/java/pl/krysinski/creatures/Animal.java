@@ -2,7 +2,6 @@ package pl.krysinski.creatures;
 
 import pl.krysinski.Sellable;
 import pl.krysinski.repo.Connector;
-import pl.krysinski.repo.Repository;
 
 public class Animal implements Sellable, Feedable {
     private final String species;
@@ -15,7 +14,7 @@ public class Animal implements Sellable, Feedable {
         if (species.equals("Homo sapiens")){
             this.species = species;
             this.weight = weight;
-            saveA();
+            saveAnimal();
         }else {
             this.species = species;
             this.weight = weight;
@@ -80,11 +79,17 @@ public class Animal implements Sellable, Feedable {
         this.weight = weight;
     }
 
-    public void saveA(){
+    public void saveAnimal(){
         String sql = "INSERT INTO ANIMAL (SPECIES, WEIGHT) VALUES (" + "'"+this.species + "'" + ", " + this.weight + ");";
 //        String sql = "INSERT INTO PET (SPECIES, WEIGHT) VALUES ('doggy', 8.0);";
-        Repository.executiveSQL(sql);
+        Connector.executiveSQL(sql);
     }
+
+    public static void findAllAnimal(){
+        String sql = "SELECT id, species, weight FROM Animal;";
+        Connector.executiveSQLReadAnimal(sql);
+    }
+
 
     @Override
     public String toString() {

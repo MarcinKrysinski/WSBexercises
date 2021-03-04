@@ -4,6 +4,7 @@ import pl.krysinski.devices.Car;
 import pl.krysinski.devices.CarComparator;
 import pl.krysinski.devices.CarTransactionInfo;
 import pl.krysinski.devices.Phone;
+import pl.krysinski.repo.Connector;
 import pl.krysinski.repo.Repository;
 
 import java.time.LocalDateTime;
@@ -169,11 +170,17 @@ public class Human extends Animal {
     }
 
     public void save(){
-        String sqlRead = "SELECT MAX(id) FROM ANIMAL;";
-        Integer id = Repository.executiveSQLRead(sqlRead);
-        String sql = "INSERT INTO HUMAN (NAME, LAST_NAME, SALARY, SPECIES_ID) VALUES (" + "'"+this.name+ "'" + ", " + "'"+this.lastName + "'" + ", " + this.salary + ", " + id + ");";
+        String sql = "INSERT INTO HUMAN (NAME, LAST_NAME, SALARY, SPECIES_ID) VALUES (" + "'"+this.name+ "'" + ", " + "'"+this.lastName + "'" + ", " + this.salary + ", "  + ");";
 //        String sql = "INSERT INTO PET (SPECIES, WEIGHT) VALUES ('doggy', 8.0);";
-        Repository.executiveSQL(sql);
+        Connector.executiveSQL(sql);
+    }
+
+    public static void findAllHuman(){
+        String sql = "SELECT * FROM Human INNER JOIN Animal ON Human.species_id = Animal.id";
+
+//        String sql = "INSERT INTO HUMAN (NAME, LAST_NAME, SALARY, SPECIES_ID) VALUES (" + "'"+this.name+ "'" + ", " + "'"+this.lastName + "'" + ", " + this.salary + ", " + id + ");";
+//        String sql = "INSERT INTO PET (SPECIES, WEIGHT) VALUES ('doggy', 8.0);";
+        Connector.executiveSQLReadHuman(sql);
     }
 
     @Override

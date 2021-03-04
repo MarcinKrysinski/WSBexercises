@@ -1,5 +1,6 @@
 package pl.krysinski.repo;
 
+import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
 
@@ -28,41 +29,5 @@ public class Repository {
         System.out.println("Table created successfully");
     }
 
-    public static Integer executiveSQLRead(String sql){
-        Connector.JDBCConnection();
-        Statement stmt = null;
-        Integer id = null;
-        try {
-            stmt = Connector.JDBCConnection().createStatement();
-            ResultSet rs = stmt.executeQuery(sql);
-            while(rs.next()) {
-                id = rs.getInt(1);
-            }
-            stmt.close();
-            Connector.JDBCConnection().close();
-        } catch (Exception e) {
-            System.err.println( e.getClass().getName()+": "+ e.getMessage() );
-            System.exit(0);
-        }
-        System.out.println("Successfully read");
 
-        return id;
-    }
-
-    public static void executiveSQL(String sql){
-        Connector.JDBCConnection();
-        Statement stmt = null;
-        try {
-            stmt = Connector.JDBCConnection().createStatement();
-            stmt.executeUpdate(sql);
-            stmt.close();
-            Connector.JDBCConnection().close();
-        } catch (Exception e) {
-            System.err.println( e.getClass().getName()+": "+ e.getMessage() );
-            System.exit(0);
-        }
-        System.out.println("Records created successfully");
-
-
-    }
 }

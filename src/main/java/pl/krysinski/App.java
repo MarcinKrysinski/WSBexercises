@@ -5,7 +5,7 @@ import pl.krysinski.creatures.Human;
 import pl.krysinski.creatures.Pet;
 import pl.krysinski.devices.Car;
 import pl.krysinski.devices.Diesel;
-import pl.krysinski.repo.Repository;
+import pl.krysinski.repo.Connector;
 
 import java.util.*;
 import java.util.stream.Collectors;
@@ -21,15 +21,28 @@ public class App
 
        // Zadanie 1
 
+        Connector.JDBCConnection();
+
         Pet pet = new Pet("Dog", 19.0);
         Animal testAnimal = new Animal("Catty", 5.0);
-        testAnimal.saveA();
-        pet.saveA();
+        Animal animal = new Animal("Python", 3.0);
+        testAnimal.saveAnimal();
+        pet.saveAnimal();
+        animal.saveAnimal();
+        Animal.findAllAnimal();
+
 
         Human human1 = new Human("Homo sapiens", 80.0, "Marian","Pazdzioch", 2000.0);
         Human human2 = new Human("Homo sapiens", 100.0, "Ferdek","Kiepski", 500.0);
         human1.save();
         human2.save();
+
+
+        // Zadanie 2
+
+        Animal.findAllAnimal();
+        Human.findAllHuman();
+
 
         // Zadanie 3
 
@@ -48,6 +61,7 @@ public class App
             System.out.println(c);
         }
 
+        
         // Zadanie 4
 
         Map<String, Double> countries = new HashMap<>();
@@ -69,6 +83,6 @@ public class App
                 i++;
             }
         }
-        
+
     }
 }
